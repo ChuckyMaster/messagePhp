@@ -7,6 +7,8 @@ if(isset($_POST['author']) && isset($_POST['description'])) {
 $authorInput = $_POST['author'];
 $messageInput = $_POST['description'];
 
+$authorInput = htmlspecialchars($authorInput);
+$messageInput = htmlspecialchars($messageInput);
 
 echo $authorInput;
 echo $messageInput;
@@ -27,7 +29,7 @@ if(!$myConnection) {
 
 $myRequest ="INSERT INTO messages (author, message)
 VALUES ( '$authorInput', '$messageInput');";
-$worked = mysqli_query($myConnection, $myRequest);
+$worked1 = mysqli_query($myConnection, $myRequest);
 header("location: http://localhost/PhpProceduraleCours/message/");
 
 

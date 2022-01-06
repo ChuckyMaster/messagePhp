@@ -1,7 +1,11 @@
+
+
 <?php
+
+require_once 'db.php';
 require_once 'logique.php';
-require_once 'deleteMessage.php';
-// require_once 'message.php';
+
+
 
 
 ?>
@@ -169,49 +173,89 @@ require_once 'deleteMessage.php';
                 </h2>
                 <!-- affichage d'un message -->
 
-<?php foreach($messages as $message) {?>
-
-<div class="container border mb-5 p-3">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="mb-2 text-light"><?=$message['author']?></h2>
-      <p class="text-light">
-        <?=$message['message']?>
-      </p>
-      <p class="text-light"> id:
-        <?=$message['id']?>
-      </p>
 
 
-        <form action=""  method="post">
 
 
-          <button type="submit" class="btn btn-primary" 
-           name="delete"
-                value="<?=$message['id']?>"> Delete</button>
 
-                
+
+
+
+    <div class="container border mb-5 p-3">
+    <div class="row">
+        <div class="col-md-12">
        
-        </form>
 
-        <form method="get">
+        <?php
+        if($editMode) { ?>
 
-        <a href="message.php?id=<?=$message['id']?>" class="btn btn-primary"> SEE</a>
-        </form>
+        <form action="updateMessage.php" method="post">
+        <h4> Modifier le message de <?= $message['author']  ?></h4>
+            <textarea class="form-control" name="editMessage"  rows="3"> 
+            <?=$message['message'] ?>
+            </textarea>
 
-    </div>
-  </div>
-</div>
 
-<!-- fin affichage message -->
+            <button class="btn btn-warning mt-3" type="submit" name="idToModifie" value="<?=$message['id'] ?>"> Save</button>
+     </form>
+        
+       <?php }else { ?>
+        <h2 class="mb-2 text-light"><?=$message['author']?></h2>
+        <p class="text-light">
+            <?=$message['message']?>
+        </p>
+        <a class="btn btn-primary" href="message.php?id=<?=$message['id'] ?>&edit="> edit</a>
+        <form action=""  method="post">
+        <button type="submit" class="btn btn-primary mt-3" 
+        name="delete"
+        value="<?=$message['id']?>"> Delete</button>
+        
+    </form>
 
-<?php     } ?>
-              </div>
-            </div>
-          </div>
+      <?php  }; ?>
+        <p class="text-light"> id:
+            <?=$message['id']?>
+        </p>
         </div>
-      </div>
+
+    
+
+
+
+            
+      
+    
+        
+
+        
+       
+        </div>
     </div>
-  </body>
-</html>
-</html>
+    </div>
+
+ 
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- fin affichage message -->
+
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </body>
+    </html>
+    </html>
